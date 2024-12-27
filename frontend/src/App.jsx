@@ -9,8 +9,8 @@ function App() {
   return (
     <>
       <Search />
-      <Tarefas />
       <AddTarefa />
+      <Tarefas />
     </>
   );
 }

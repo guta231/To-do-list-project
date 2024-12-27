@@ -17,6 +17,7 @@ table {
 
 const Tarefas = () => {
 
+
     const [tarefas, setTarefas] = useState([])
 
 
@@ -29,7 +30,16 @@ const Tarefas = () => {
         }); 
 
 
+    const alterarTarefa = (tarefa) => {
+        
+        const indice = {
+            nome: tarefa.nome
+        }
 
+        axios.post('http://localhost:3000/alterar', indice)
+            
+           
+    }
 
     return(
         <TarefasContainer>
@@ -45,6 +55,7 @@ const Tarefas = () => {
                         <tr key={index}>
                             <td>{tarefa.nome}</td>
                             <td>{tarefa.status}</td>
+                            <button onClick={() => alterarTarefa(tarefa)}>Alterar</button>
                         </tr>
                     ))}
                 </tbody>
