@@ -4,6 +4,7 @@ import Styled from 'styled-components';
 
 
 
+
 const TarefasContainer = Styled.section `
     display: flex;
     justify-content: center;
@@ -21,7 +22,7 @@ const Tarefas = () => {
     const [tarefas, setTarefas] = useState([])
 
 
-    axios.get('http://localhost:3000/tarefas')
+    axios.get('http://localhost:3000/')
         .then(response => {
             setTarefas(response.data);
         })
@@ -33,10 +34,10 @@ const Tarefas = () => {
     const alterarTarefa = (tarefa) => {
         
         const indice = {
-            nome: tarefa.nome
+            id: tarefa.id
         }
 
-        axios.post('http://localhost:3000/alterar', indice)
+        axios.patch('http://localhost:3000/', indice)
             
            
     }
@@ -46,6 +47,7 @@ const Tarefas = () => {
             <table border="1">
                 <thead>
                     <tr>
+                        <th>ID</th>
                         <th>NOME DA TAREFA</th>
                         <th>STATUS</th>
                     </tr>
@@ -53,6 +55,7 @@ const Tarefas = () => {
                 <tbody>
                     {tarefas.map((tarefa, index) => (
                         <tr key={index}>
+                            <td>{tarefa.id}</td>
                             <td>{tarefa.nome}</td>
                             <td>{tarefa.status}</td>
                             <button onClick={() => alterarTarefa(tarefa)}>Alterar</button>

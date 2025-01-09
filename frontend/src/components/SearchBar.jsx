@@ -39,7 +39,7 @@ const Pesquisa = () => {
 
         try {
             // Obtém a lista de tarefas
-            const response = await axios.get("http://localhost:3000/tarefas");
+            const response = await axios.get("http://localhost:3000/");
             setListaDeTarefas(response.data);
 
             // Filtra as tarefas com base na pesquisa
