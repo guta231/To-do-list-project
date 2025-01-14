@@ -11,7 +11,7 @@ const AddTarefa = () => {
     const [message, setMessage] = useState("");
 
 
-    const adicionarTarefa = async (e) => {
+    const adicionarTarefa = (e) => {
         e.preventDefault()
         try{
             if (inputAdicionarTarefa == "") {
@@ -23,7 +23,7 @@ const AddTarefa = () => {
                 const novaTarefa = {
                     nome: inputAdicionarTarefa
                 }
-                await axios.post('http://localhost:3000/', novaTarefa)
+                    axios.post('http://localhost:3000/', novaTarefa)
                     .then(response => {
                         setMessage(response.data.message);
                         

@@ -8,7 +8,7 @@ const ExcluirTarefa = () => {
     const [inputExcluirTarefa, setInputExcluirTarefa] = useState("");
     const [message, setMessage] = useState("")
 
-    const excluirTarefa = async (e) => {
+    const excluirTarefa = (e) => {
         e.preventDefault()
 
         try{
@@ -16,7 +16,7 @@ const ExcluirTarefa = () => {
                 id:inputExcluirTarefa
             }
             
-          await axios.delete("http://localhost:3000/", {data:tarefa})
+            axios.delete("http://localhost:3000/", {data:tarefa})
             .then(response => {
                 setMessage(response.data.message);
             })

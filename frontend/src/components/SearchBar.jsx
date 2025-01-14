@@ -34,22 +34,18 @@ const Pesquisa = () => {
     const [listaDeTarefas, setListaDeTarefas] = useState([]); // Lista completa de tarefas
     const [resultadoPesquisa, setResultadoPesquisa] = useState([]); // Resultados da pesquisa
 
-    const pesquisar = async (e) => {
+    const pesquisar = (e) => {
         e.preventDefault(); // Previne o comportamento padrão do formulário
 
-        try {
-            // Obtém a lista de tarefas
-            const response = await axios.get("http://localhost:3000/");
+        axios.get("http://localhost:3000/")
+        .then(response => {
             setListaDeTarefas(response.data);
 
-            // Filtra as tarefas com base na pesquisa
-            const resultados = listaDeTarefas.filter((tarefa) =>
-                tarefa.nome.toLowerCase().includes(pesquisa.toLowerCase())
-            );
-            setResultadoPesquisa(resultados); // Atualiza os resultados no estado
-        } catch (error) {
-            console.log("Erro ao pegar lista de tarefas: ", error);
-        }
+            setResultadoPesquisa(listaDeTarefas.filter((tarefa) => tarefa.nome === pesquisa));
+        })
+        .catch(error => {
+            console.log("Erro ao ter resposta do servidor", error);
+        })
     };
 
     return (
